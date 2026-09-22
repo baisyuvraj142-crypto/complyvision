@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ComplyVision — Legal Metrology Compliance Checker (SIH 2026)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <!-- Header Bar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <div class="nav-brand">
+        <div class="brand-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 12h20M12 2v20"/>
+            <circle cx="12" cy="12" r="9"/>
+            <circle cx="12" cy="12" r="4"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <div class="brand-title">ComplyVision</div>
+          <div class="brand-subtitle">Automated Packaged Commodity Compliance Checker</div>
+        </div>
+      </div>
+      <div class="nav-badges">
+        <span class="badge sih-badge">SIH 2026 • PS ID 26034</span>
+        <span class="badge rule-badge">Legal Metrology Rules, 2011</span>
+        <span class="status-indicator online">
+          <span class="pulse-dot"></span> System Live
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation Tabs -->
+  <nav class="subnav">
+    <div class="subnav-container">
+      <button class="nav-tab active" data-tab="tab-scanner">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7V4h3M20 7V4h-3M4 17v3h3M20 17v3h-3M7 12h10"/></svg>
+        Live Scanner
+      </button>
+      <button class="nav-tab" data-tab="tab-audit">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+        Audit Trail
+      </button>
+      <button class="nav-tab" data-tab="tab-rules">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+        Live Rule Editor
+      </button>
+      <button class="nav-tab" data-tab="tab-guide">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+        Spec & Reference
+      </button>
+    </div>
+  </nav>
+
+  <!-- Main Container -->
+  <main class="main-content">
+    
+    <!-- TAB 1: SCANNER -->
+    <section id="tab-scanner" class="tab-panel active">
+      <!-- Quick Demo Samples Bar -->
+      <div class="card demo-card">
+        <div class="card-header-flex">
+          <div>
+            <h3 class="card-title">⚡ Instant Hackathon Demo Samples</h3>
+            <p class="card-desc">Click any pre-packaged commodity label scenario below for instantaneous 1-click evaluation:</p>
+          </div>
+          <span class="pill-tag">5 Scenarios Ready</span>
+        </div>
+        <div class="samples-grid" id="samples-grid">
+          <!-- Populated dynamically via JS -->
+          <div class="loading-spinner-sm">Loading demo samples...</div>
+        </div>
+      </div>
+
+      <!-- Upload Zone Card -->
+      <div class="card upload-card">
+        <div class="upload-dropzone" id="dropzone">
+          <input type="file" id="file-input" accept="image/*" class="file-input-hidden">
+          <div class="dropzone-inner">
+            <div class="upload-icon-circle">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="17 8 12 3 7 8"></polyline>
+                <line x1="12" y1="3" x2="12" y2="15"></line>
+              </svg>
+            </div>
+            <h4>Upload Product Label Photo</h4>
+            <p>Drag and drop a packaging label photo here, or <span class="browse-link">browse from your computer</span></p>
+            <div class="supported-meta">Supports PNG, JPG, JPEG, WEBP • Max 15MB • OpenCV CLAHE Preprocessed</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Processing Progress Card (Hidden initially) -->
+      <div class="card progress-card hidden" id="progress-card">
+        <div class="progress-header">
+          <div class="spinner-dot"></div>
+          <div>
+            <h4 id="progress-title">Scanning & Validating Label...</h4>
+            <p id="progress-sub" class="text-muted">Extracting text coordinates, calculating font ratio, checking Legal Metrology 2011 rules</p>
+          </div>
+        </div>
+        <div class="progress-bar-wrap">
+          <div class="progress-bar" id="scan-progress-bar"></div>
+        </div>
+      </div>
+
+      <!-- Compliance Results Section (Hidden initially) -->
+      <div id="results-section" class="hidden">
+        
+        <!-- Overall Verdict Banner -->
+        <div class="verdict-banner" id="verdict-banner">
+          <div class="verdict-main">
+            <div class="verdict-badge" id="verdict-badge">COMPLIANT (PASS)</div>
+            <h2 class="verdict-title" id="verdict-title">All Statutory Declarations Compliant</h2>
+            <p class="verdict-summary" id="verdict-summary">All mandated declarations are present and satisfy Legal Metrology Rules 2011.</p>
+          </div>
+          <div class="verdict-metrics">
+            <div class="metric-box">
+              <span class="metric-label">Execution Time</span>
+              <span class="metric-value highlight" id="metric-time">1.82s</span>
+              <span class="metric-sub">Target &lt; 5.0s (NFR-1)</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-label">Compliance Score</span>
+              <span class="metric-value" id="metric-score">100%</span>
+              <span class="metric-sub" id="metric-stats">5 of 5 Passed</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-label">Blur Variance</span>
+              <span class="metric-value" id="metric-blur">2,810</span>
+              <span class="metric-sub" id="metric-blur-status">Clear (NFR-3 Pass)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Standout Technical Feature: Font-Height Ratio Visualizer Card (FR-6) -->
+        <div class="card font-ratio-card" id="font-ratio-card">
+          <div class="card-header-flex">
+            <div>
+              <div class="d-flex align-center gap-2">
+                <h3 class="card-title">🔬 Font-Height Ratio Analysis (Standout Differentiator — FR-6)</h3>
+                <span class="badge" id="ratio-badge">Compliant</span>
+              </div>
+              <p class="card-desc">Validates MRP declaration height against surrounding packaging body text per Legal Metrology readability standards.</p>
+            </div>
+            <div class="ratio-stat">
+              <span class="ratio-big" id="ratio-big-value">1.15x</span>
+              <span class="ratio-sub">Ratio vs Baseline</span>
+            </div>
+          </div>
+          
+          <div class="ratio-meter-wrap">
+            <div class="ratio-meter-labels">
+              <span>0.0x (Unreadable)</span>
+              <span class="threshold-marker">1.00x (Min Required Threshold)</span>
+              <span>2.5x+ (Prominent)</span>
+            </div>
+            <div class="ratio-bar-bg">
+              <div class="ratio-bar-fill" id="ratio-bar-fill" style="width: 50%;"></div>
+              <div class="ratio-threshold-line" title="Minimum Required Ratio (1.0x)"></div>
+            </div>
+          </div>
+
+          <div class="ratio-diagnostics-grid">
+            <div class="diag-item">
+              <span class="diag-lbl">Detected MRP Height</span>
+              <span class="diag-val" id="diag-mrp-h">24 px</span>
+            </div>
+            <div class="diag-item">
+              <span class="diag-lbl">Baseline Packaging Font Height</span>
+              <span class="diag-val" id="diag-base-h">21 px</span>
+            </div>
+            <div class="diag-item">
+              <span class="diag-lbl">Calculated Height Ratio</span>
+              <span class="diag-val" id="diag-ratio">1.14x</span>
+            </div>
+            <div class="diag-item">
+              <span class="diag-lbl">Statutory Verdict</span>
+              <span class="diag-val" id="diag-verdict">PASS</span>
+            </div>
+          </div>
+          <div class="ratio-explanation" id="ratio-explanation"></div>
+        </div>
+
+        <!-- Visual Image Bounding Box Overlay Card -->
+        <div class="card viewer-card">
+          <div class="card-header-flex">
+            <div>
+              <h3 class="card-title">🖼️ Inspection Evidence & Bounding-Box Overlay</h3>
+              <p class="card-desc">Visual bounding boxes annotated on packaging: <span class="text-success font-semibold">Green = Compliant</span>, <span class="text-danger font-semibold">Red = Violation</span>, <span class="text-warning font-semibold">Amber = Manual Review</span>.</p>
+            </div>
+            <div class="view-toggle-btns">
+              <button class="btn btn-sm btn-active" id="btn-show-annotated">Annotated View</button>
+              <button class="btn btn-sm" id="btn-show-original">Original Label</button>
+            </div>
+          </div>
+          <div class="image-viewer-container">
+            <img id="display-image" src="" alt="Scanned Label Inspection" class="scanned-image-preview">
+          </div>
+        </div>
+
+        <!-- Detailed Legal Declarations Compliance Breakdown Table -->
+        <div class="card table-card">
+          <div class="card-header-flex">
+            <div>
+              <h3 class="card-title">📋 Legal Metrology (Packaged Commodities) Rules, 2011 Breakdown</h3>
+              <p class="card-desc">Automated validation matrix for mandatory declarations under Rule 6:</p>
+            </div>
+            <span class="pill-tag">Ruleset v2011.1-MVP</span>
+          </div>
+
+          <div class="table-responsive">
+            <table class="compliance-table">
+              <thead>
+                <tr>
+                  <th>Statutory Declaration</th>
+                  <th>Legal Rule Citation</th>
+                  <th>Extracted Value</th>
+                  <th>Confidence</th>
+                  <th>Compliance Verdict</th>
+                  <th>Auditing Rationale</th>
+                </tr>
+              </thead>
+              <tbody id="field-breakdown-body">
+                <!-- Populated dynamically via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TAB 2: AUDIT TRAIL -->
+    <section id="tab-audit" class="tab-panel">
+      <div class="card">
+        <div class="card-header-flex">
+          <div>
+            <h3 class="card-title">🗄️ Persistent Audit Trail & Inspection History (FR-9, FR-10)</h3>
+            <p class="card-desc">Tamper-evident persistent SQLite logs of all past product scans with timestamps, verdicts, and evidence.</p>
+          </div>
+          <div class="audit-controls">
+            <input type="text" id="audit-search" placeholder="Search scan ID or filename..." class="search-input">
+            <select id="audit-filter" class="filter-select">
+              <option value="">All Verdicts</option>
+              <option value="PASS">Pass Only</option>
+              <option value="FAIL">Fail Only</option>
+              <option value="REVIEW">Review Only</option>
+            </select>
+            <button class="btn btn-primary btn-sm" id="btn-refresh-audit">Refresh Log</button>
+          </div>
+        </div>
+
+        <div class="table-responsive mt-3">
+          <table class="compliance-table audit-table">
+            <thead>
+              <tr>
+                <th>Scan ID</th>
+                <th>Timestamp</th>
+                <th>Image Reference</th>
+                <th>Verdict</th>
+                <th>Compliance %</th>
+                <th>MRP Extracted</th>
+                <th>Net Qty</th>
+                <th>Mfg Date</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="audit-table-body">
+              <tr>
+                <td colspan="9" class="text-center py-4 text-muted">Loading audit history...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: LIVE RULE EDITOR -->
+    <section id="tab-rules" class="tab-panel">
+      <div class="card">
+        <div class="card-header-flex">
+          <div>
+            <h3 class="card-title">⚙️ Live Legal Metrology Rule Configurator (FR-11, NFR-5)</h3>
+            <p class="card-desc">
+              Demonstrates the standout hackathon capability: <strong>"Law amendment without redeploy"</strong>.<br>
+              Edit rules below and click "Save & Apply Live". Re-scan any label to see the amended statutory rule take effect immediately without restarting the server!
+            </p>
+          </div>
+          <div class="d-flex gap-2">
+            <button class="btn btn-secondary btn-sm" id="btn-reset-rules">Reset Defaults</button>
+            <button class="btn btn-success btn-sm" id="btn-save-rules">💾 Save & Apply Live</button>
+          </div>
+        </div>
+
+        <div class="editor-wrap mt-3">
+          <div class="editor-header">
+            <span>File: <code>rules/rules.json</code> (Active In-Memory & Persistent)</span>
+            <span id="rules-save-status" class="text-muted">Ready</span>
+          </div>
+          <textarea id="rules-json-editor" class="code-editor" spellcheck="false"></textarea>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: SPEC & REFERENCE -->
+    <section id="tab-guide" class="tab-panel">
+      <div class="card">
+        <h3 class="card-title">📖 Smart India Hackathon 2026 — PS ID 26034</h3>
+        <p class="card-desc mt-1">ComplyVision was built specifically according to the official Software Requirements Specification.</p>
+
+        <div class="guide-grid mt-4">
+          <div class="guide-box">
+            <h4>Mandatory Rule Set (Rule 6, Legal Metrology 2011)</h4>
+            <ul>
+              <li><strong>Rule 6(1)(a)</strong>: Name and complete address of the manufacturer or packer.</li>
+              <li><strong>Rule 6(1)(b)</strong>: Net quantity in standard metric units (g, kg, ml, l).</li>
+              <li><strong>Rule 6(1)(d)</strong>: Month and year of manufacture or pre-packing.</li>
+              <li><strong>Rule 6(1)(e)</strong>: Maximum Retail Price (MRP) inclusive of all taxes.</li>
+              <li><strong>Rule 6(1)(f)</strong>: Name, address, phone or email of the consumer care contact.</li>
+            </ul>
+          </div>
+
+          <div class="guide-box">
+            <h4>Standout Technical Differentiators</h4>
+            <ul>
+              <li><strong>Font-Height Ratio Checker (FR-6)</strong>: Evaluates whether the MRP declaration font size is compliant relative to surrounding packaging text.</li>
+              <li><strong>Live JSON Rule Amendments (NFR-5, FR-11)</strong>: Dynamically reloadable rules without recompilation or redeployment.</li>
+              <li><strong>Degraded & Blurry Image Handling (NFR-3)</strong>: Laplacian variance blur detection gracefully alerts users to re-capture instead of crashing.</li>
+              <li><strong>Sub-5 Second Processing (NFR-1)</strong>: End-to-end local inference runs in &lt; 2 seconds.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Modal for Audit Detail View -->
+  <div class="modal-overlay hidden" id="scan-modal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">Scan Details</h3>
+        <button class="modal-close" id="modal-close">&times;</button>
+      </div>
+      <div class="modal-body" id="modal-body">
+        <!-- Injected dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div>ComplyVision MVP Prototype • Smart India Hackathon 2026 (PS ID 26034)</div>
+      <div class="text-muted">Built for Legal Metrology Packaged Commodities Enforcement • GitHub: <a href="https://github.com/baisyuvraj142-crypto" target="_blank" class="text-link">baisyuvraj142-crypto</a></div>
+    </div>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

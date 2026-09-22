@@ -1,0 +1,7 @@
+Flask>=3.0.0
+opencv-python>=4.5.0
+numpy>=1.20.0
+pillow>=9.0.0
+rapidocr-onnxruntime>=1.2.0
+pytesseract>=0.3.10
+gunicorn>=21.0.0

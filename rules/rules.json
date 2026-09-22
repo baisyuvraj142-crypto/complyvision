@@ -1,0 +1,42 @@
+{
+  "ruleset_version": "2011.1-MVP",
+  "description": "Legal Metrology (Packaged Commodities) Rules, 2011 - Mandatory Declarations",
+  "rules": {
+    "mrp": {
+      "field_name": "Maximum Retail Price (MRP)",
+      "legal_rule": "Rule 6(1)(e) - Mandatory declaration of MRP inclusive of all taxes",
+      "required": true,
+      "min_font_ratio": 1.0,
+      "pattern": "(?:Rs\\.?|₹|MRP|M\\.R\\.P\\.?)\\s*[:.]?\\s*\\d+(?:\\.\\d{1,2})?",
+      "confidence_threshold": 0.45
+    },
+    "net_quantity": {
+      "field_name": "Net Quantity",
+      "legal_rule": "Rule 6(1)(b) - Declaration of net quantity in standard metric units (g, kg, ml, l)",
+      "required": true,
+      "pattern": "\\d+(?:\\.\\d+)?\\s*(?:g|kg|ml|l|ML|L|KG|G|gm|gms|g\\.|kg\\.|ml\\.|l\\.)",
+      "confidence_threshold": 0.45
+    },
+    "mfg_date": {
+      "field_name": "Date of Manufacture / Packing",
+      "legal_rule": "Rule 6(1)(d) - Month and year of manufacture or pre-packing must be stated",
+      "required": true,
+      "pattern": "(?:\\d{1,2}[/-]\\d{2,4}|\\d{2}[/-]\\d{2}[/-]\\d{2,4}|(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*[\\s.-]+\\d{2,4})",
+      "confidence_threshold": 0.45
+    },
+    "manufacturer_name": {
+      "field_name": "Manufacturer / Packer Details",
+      "legal_rule": "Rule 6(1)(a) - Name and complete address of the manufacturer or packer",
+      "required": true,
+      "pattern": ".{4,}",
+      "confidence_threshold": 0.40
+    },
+    "consumer_care": {
+      "field_name": "Consumer Care Details",
+      "legal_rule": "Rule 6(1)(f) - Name, address, phone number or email of consumer complaint contact",
+      "required": true,
+      "pattern": "(?:\\b\\d{10}\\b|1800\\s*\\d{3,4}\\s*\\d{3,4}|[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,})",
+      "confidence_threshold": 0.40
+    }
+  }
+}

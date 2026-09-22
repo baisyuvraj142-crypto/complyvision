@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+data/*.db
+static/uploads/*.png
+static/uploads/*.jpg
+static/uploads/*.jpeg
+.pytest_cache/
